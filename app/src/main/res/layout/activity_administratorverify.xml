@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#902196f3"
+    android:focusable="true"
+    android:focusableInTouchMode="true"  >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:onClick="exit"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingTop="0dp"
+            app:fb_borderColor="#090b0b"
+            app:fb_borderWidth="0dp"
+            app:fb_defaultColor="#7ab800"
+            app:fb_focusColor="#109bd823"
+            app:fb_fontIconResource="&#xf053;"
+            app:fb_fontIconSize="20dp"
+            app:fb_ghost="true"
+            app:fb_iconPaddingRight="0dp"
+            app:fb_iconPosition="left"
+            app:fb_radius="0dp"
+            app:fb_text=""
+            app:fb_textColor="#FFFFFF"
+            app:fb_textSize="14dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认密码"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mtf_labelColor="#666"
+        app:mtf_image="@mipmap/administrator"
+        >
+
+        <EditText
+            android:id="@+id/administratorVerify_editText_passWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请再次确认管理员密码"
+            android:inputType="textPassword"
+            android:textColor="#333"
+            android:textSize="15sp" />
+
+    </com.github.florent37.materialtextfield.MaterialTextField>
+
+
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:onClick="verifyPassWord"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="10dp"
+        app:fb_borderColor="#090b0b"
+        app:fb_borderWidth="0dp"
+        app:fb_defaultColor="#7ab800"
+        app:fb_focusColor="#66090b0b"
+        app:fb_fontIconResource="&#xf054;"
+        app:fb_fontIconSize="20dp"
+        app:fb_ghost="false"
+        app:fb_iconPaddingRight="0dp"
+        app:fb_iconPosition="left"
+        app:fb_radius="0dp"
+        app:fb_text="确定"
+        app:fb_textColor="#FFFFFF"
+        app:fb_textSize="14dp" />
+
+
+
+</LinearLayout>

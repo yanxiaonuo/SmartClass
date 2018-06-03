@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/welcomepage_relativeLayout_background"
+    android:background="#882196f3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ImageView_lunchloge"
+        android:layout_width="174dp"
+        android:layout_height="98dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="85dp"
+        android:src="@mipmap/logo" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/ImageView_lunchloge"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="智能教室"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowColor="#323232"
+        android:shadowRadius="1"
+        android:textSize="15sp"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/welcomePage_textView_version"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowColor="#323232"
+        android:shadowRadius="1"
+        android:textSize="12sp"
+        />
+
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/welcomepage_lodingView_loding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:indicatorName="LineScaleIndicator"
+        app:indicatorColor="#3F51B5"
+        />
+
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowColor="#323232"
+        android:shadowRadius="1"
+        android:textSize="12sp"
+        android:text="Copyright ©2016-2018智能教室团队"
+        />
+
+</RelativeLayout>

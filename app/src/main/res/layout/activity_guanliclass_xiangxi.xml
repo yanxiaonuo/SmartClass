@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#902196f3">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:onClick="exit"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingTop="0dp"
+            app:fb_borderColor="#090b0b"
+            app:fb_borderWidth="0dp"
+            app:fb_defaultColor="#7ab800"
+            app:fb_focusColor="#109bd823"
+            app:fb_fontIconResource="&#xf053;"
+            app:fb_fontIconSize="20dp"
+            app:fb_ghost="true"
+            app:fb_iconPaddingRight="0dp"
+            app:fb_iconPosition="left"
+            app:fb_radius="0dp"
+            app:fb_text=""
+            app:fb_textColor="#FFFFFF"
+            app:fb_textSize="14dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详情"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="教室名："
+            android:textColor="#f0f0f0"
+            android:textSize="23sp"/>
+
+        <TextView
+            android:id="@+id/guanLiClass_xiangXi_textView_className"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="教室1"
+            android:textColor="#f0f0f0"
+            android:textSize="23sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="人数："
+            android:textColor="#f0f0f0"
+            android:textSize="23sp"/>
+
+        <TextView
+            android:id="@+id/guanLiClass_xiangXi_textView_theNumberOfPeople"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="4人"
+            android:textColor="#f0f0f0"
+            android:textSize="23sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="光照强度："
+            android:textColor="#f0f0f0"
+            android:textSize="23sp"/>
+
+        <TextView
+            android:id="@+id/guanLiClass_xiangXi_textView_liangdu"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="明亮"
+            android:textColor="#f0f0f0"
+            android:textSize="23sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="上课情况："
+            android:textColor="#f0f0f0"
+            android:textSize="23sp"/>
+
+        <TextView
+            android:id="@+id/guanLiClass_xiangXi_textView_isShangKe"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="未上课"
+            android:textColor="#f0f0f0"
+            android:textSize="23sp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="空调情况："
+            android:textColor="#f0f0f0"
+            android:textSize="23sp"/>
+
+        <TextView
+            android:id="@+id/guanLiClass_xiangXi_textView_fengShanQingKuang"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="运行"
+            android:textColor="#f0f0f0"
+            android:textSize="23sp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="电灯情况："
+            android:textColor="#f0f0f0"
+            android:textSize="23sp"/>
+
+        <TextView
+            android:id="@+id/guanLiClass_xiangXi_textView_dianDengQingKuang"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="运行"
+            android:textColor="#f0f0f0"
+            android:textSize="23sp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/guanLiClass_xiangXi_button_fengshan"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="关闭空调"
+                android:textSize="25dp"/>
+
+            <Button
+                android:id="@+id/guanLiClass_xiangXi_button_diandeng"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="关闭电灯"
+                android:textSize="25dp"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/guanLiClass_xiangXi_button_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:text="返回"
+            android:textSize="25sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

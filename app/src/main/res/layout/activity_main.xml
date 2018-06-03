@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/main_lodingView_loding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:indicatorName="TriangleSkewSpinIndicator"
+        app:indicatorColor="#3F51B5"
+        />
+
+
+
+    <!--底层侧拉栏-->
+    <com.mxn.soul.flowingdrawer_core.FlowingDrawer
+        android:id="@+id/main_flowingDrawerLayout_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#902196f3"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:edMenuBackground="#6cc5c7"
+        app:edMenuSize="260dp"
+        app:edPosition="1">
+
+        <!--content-->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--刷新框架-->
+            <com.xiaonuo.smartclass.ui.WaveSwipeRefreshLayout
+                android:id="@+id/main_waveSwipeRefreshLayout_swipe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--content-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <!--自定actionBar-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp">
+
+                        <mehdi.sakout.fancybuttons.FancyButton
+                            android:id="@+id/main_fancyButton_openDrawer"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:paddingBottom="0dp"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp"
+                            android:paddingTop="0dp"
+                            app:fb_borderColor="#090b0b"
+                            app:fb_borderWidth="0dp"
+                            app:fb_defaultColor="#7ab800"
+                            app:fb_focusColor="#109bd823"
+                            app:fb_fontIconResource="&#xf054;"
+                            app:fb_fontIconSize="20dp"
+                            app:fb_ghost="true"
+                            app:fb_iconPaddingRight="0dp"
+                            app:fb_iconPosition="left"
+                            app:fb_radius="0dp"
+                            app:fb_text=""
+                            app:fb_textColor="#FFFFFF"
+                            app:fb_textSize="14dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="智能教室"
+                            android:layout_centerInParent="true"/>
+
+                    </RelativeLayout>
+
+
+                    <!--actionBar下的内容-->
+                    <include layout="@layout/item_main_conent_layout" />
+
+                </LinearLayout>
+
+            </com.xiaonuo.smartclass.ui.WaveSwipeRefreshLayout>
+
+        </RelativeLayout>
+
+
+
+
+
+        <!--menu-->
+        <com.mxn.soul.flowingdrawer_core.FlowingMenuLayout
+            android:id="@+id/menulayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/item_main_drawer_layout"/>
+
+        </com.mxn.soul.flowingdrawer_core.FlowingMenuLayout>
+
+    </com.mxn.soul.flowingdrawer_core.FlowingDrawer>
+
+</RelativeLayout>

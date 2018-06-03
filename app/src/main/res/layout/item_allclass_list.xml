@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="#7783e383">
+
+    <TextView
+        android:id="@+id/item_allClassSimpleMessage_textView_xuHao"
+        android:gravity="left"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="1"
+        android:textColor="#f0f0f0"/>
+
+    <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/item_allClassSimpleMessage_textView_classStatus"
+            android:layout_weight="7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="未上课"
+            android:gravity="center"
+            android:textColor="#f0f0f0"/>
+
+
+        <TextView
+            android:id="@+id/item_allClassSimpleMessage_textView_className"
+            android:layout_weight="6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="教室1"
+            android:gravity="center"
+            android:textColor="#f0f0f0"/>
+
+
+        <TextView
+            android:id="@+id/item_allClassSimpleMessage_textView_peopleCount"
+            android:layout_weight="7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="12/40"
+            android:gravity="center"
+            android:textColor="#f0f0f0"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#772b3131"/>
+
+</RelativeLayout>
