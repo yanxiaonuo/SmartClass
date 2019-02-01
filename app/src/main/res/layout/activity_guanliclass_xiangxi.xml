@@ -163,7 +163,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="空调情况："
+            android:text="电灯情况："
             android:textColor="#f0f0f0"
             android:textSize="23sp"/>
 
@@ -222,8 +222,10 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="关闭空调"
+                android:text="关闭风扇"
                 android:textSize="25dp"/>
+
+
 
             <Button
                 android:id="@+id/guanLiClass_xiangXi_button_diandeng"
@@ -233,7 +235,17 @@
                 android:text="关闭电灯"
                 android:textSize="25dp"/>
 
+            <Button
+                android:id="@+id/guanLiClass_xiangXi_button_kongtaiokongzhi"
+                android:layout_weight="1"
+                android:onClick="tiaojiekongtiao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="调节空调"
+                android:textSize="25dp"/>
+
         </LinearLayout>
+
 
         <Button
             android:id="@+id/guanLiClass_xiangXi_button_back"
@@ -245,6 +257,9 @@
             android:textSize="25sp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
+
+
+
 
     </RelativeLayout>
 

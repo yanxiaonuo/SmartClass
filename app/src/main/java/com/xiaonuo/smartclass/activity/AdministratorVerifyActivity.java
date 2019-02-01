@@ -1,5 +1,6 @@
 package com.xiaonuo.smartclass.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 
 import com.jaeger.library.StatusBarUtil;
 import com.xiaonuo.smartclass.R;
+import com.xiaonuo.smartclass.utils.Constant;
 import com.xiaonuo.smartclass.utils.Utils;
 
 /**
@@ -16,6 +18,7 @@ import com.xiaonuo.smartclass.utils.Utils;
  */
 
 public class AdministratorVerifyActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,4 +58,5 @@ public class AdministratorVerifyActivity extends AppCompatActivity {
         finish();
         overridePendingTransition(R.anim.next_in,R.anim.next_out);
     }
+
 }

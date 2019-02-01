@@ -23,7 +23,7 @@ public class Utils {
     public static boolean cleanSp() {
         if (sp == null) {
             sp = MyApplication.getContext()
-                    .getSharedPreferences("config", Context.MODE_PRIVATE);
+                    .getSharedPreferences("config", Context.MODE_MULTI_PROCESS);
         }
 
         return sp.edit().clear().commit();
@@ -38,7 +38,7 @@ public class Utils {
     public static boolean putString(String key, String value) {
         if (sp == null) {
             sp = MyApplication.getContext()
-                    .getSharedPreferences("config", Context.MODE_PRIVATE);
+                    .getSharedPreferences("config", Context.MODE_MULTI_PROCESS);
         }
 
         return sp.edit().putString(key, value).commit();
@@ -53,7 +53,7 @@ public class Utils {
     public static String getString(String key, String defaultValue) {
         if (sp == null) {
             sp = MyApplication.getContext()
-                    .getSharedPreferences("config", Context.MODE_PRIVATE);
+                    .getSharedPreferences("config", Context.MODE_MULTI_PROCESS);
         }
 
         return sp.getString(key, defaultValue);

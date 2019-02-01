@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.adeel.library.easyFTP;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -43,12 +44,11 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    int x=0;
-    String [] ss={"0","4"};
 
     private AVLoadingIndicatorView mLoding;
     private String data;
     private boolean isCanTouch = true;
+    private int mErrorFalg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,14 +111,18 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        getAndStoreServiceData();
-//                        getAndStoreServiceData11();
+//                        getAndStoreServiceData();
+                        getAndStoreServiceData11();
 
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                if(mErrorFalg==0){
+                                    Utils.show("刷新成功");
+                                }else{
+                                    Utils.show("刷新失败");
+                                }
 
-                                Utils.show("刷新成功");
                                 waveSwipeRefreshLayout_swipe.setRefreshing(false);
                             }
 
@@ -181,121 +185,85 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void getAndStoreServiceData11() {
         try {
-            Socket socket = new Socket("121.42.190.173", 8000);
-            System.out.println("客户端启动成功");
+            Socket socket = new Socket("192.168.31.197", 8000);
             PrintWriter write = new PrintWriter(socket.getOutputStream(),true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-//            write.println("connect succeed");
+//            write.println("AP");
 //            write.flush();
+            String s=in.readLine();
+            System.out.println(s);
 
-//            char[] c=new char[50];
-//            int pos=0;
-//            pos=in.read(c);
-
-
-            System.out.println("111111server" + in.readLine());
-//            System.out.println("111111server" +new String(String.valueOf(c,0,pos).getBytes("GBK"),"GBK"));
-
-
-            write.println("OK");
+            write.println("AP");
             write.flush();
-            // 刷新输出流，使Server马上收到该字符串
+            String json=in.readLine();
 
-            //收到的消息
 
-//            pos=in.read(c);
-//            System.out.println("111111server" +new String(String.valueOf(c,0,pos).getBytes("UTF-8"),"UTF-8"));
-//            Utils.show("2222222server" + in.readLine());
-            System.out.println("2222222server" + in.readLine());
+            System.out.println("111111server  " + json);
+
+
+
+            json=json.substring(1,json.length());
+
+            JSONObject j = new JSONObject(json);
+            String classID = j.getString("id");
+            String temperature = j.getString("temperature");
+            String peopleCount = j.getString("people");
+
+            String brightness = j.getString("brightness").trim();
+            if (brightness.equals("1")) {
+                brightness = "昏暗";
+            } else if (brightness.equals("2")) {
+                brightness = "中等";
+            } else {
+                brightness = "明亮";
+            }
+
+            String classStatus = j.getString("classstatus").trim();
+            if (classStatus.equals("InClass")) {
+                classStatus = "上课中";
+            } else {
+                classStatus = "未上课";
+            }
+
+            String fan = j.getString("fan").trim();
+            if (fan.equals("ON")) {
+                fan = "运行";
+            } else {
+                fan = "关闭";
+            }
+
+            String light = j.getString("light").trim();
+            if (light.equals("ON")) {
+                light = "运行";
+            } else {
+                light = "关闭";
+            }
+
+            //存储SP
+            Utils.putString(Constant.CLASSID, classID);
+            Utils.putString(Constant.TEMPERATURE, temperature);
+            Utils.putString(Constant.PEOPLECOUNT, peopleCount);
+            Utils.putString(Constant.BRIGHTNESS, brightness);
+            Utils.putString(Constant.CLASSSTATUS, classStatus);
+            Utils.putString(Constant.FAN, fan);
+            Utils.putString(Constant.LIGHT, light);
 
             //4、关闭资源
             write.close(); // 关闭Socket输出流
             in.close(); // 关闭Socket输入流
             socket.close(); // 关闭Socket
+            mErrorFalg = 0;
         } catch (Exception e) {
+            mErrorFalg = 1;
             System.out.println("can not listen to:" + e);// 出错，打印出错信息
         }
     }
 
-    private void getAndStoreServiceData() {
-        //存储JSON
-        DownloadTask async = new DownloadTask();
-        async.execute();
-
-        //处理json文件
-        //将上课情况和人数存储sp,在教室查询里需要展示
-        File file = new File(MainActivity.this.getFilesDir(), Constant.CLASSSTATUSJSONONPHONEPATH);
-        try {
-//            InputStream is = new FileInputStream(file);
-//            String json = StreamUtil.streamToString(is);
-//            json = json.substring(1, json.length() - 1);
-//
-//            JSONObject j = new JSONObject(json);
-//            String classID = j.getString("ClassID");
-//            String temperature = j.getString("Temperature");
-//            String peopleCount = j.getString("PeopleCount");
-//
-//            String brightness = j.getString("Brightness").trim();
-//            if (brightness.equals("1")) {
-//                brightness = "昏暗";
-//            } else if (brightness.equals("2")) {
-//                brightness = "中等";
-//            } else {
-//                brightness = "明亮";
-//            }
-//
-//            String classStatus = j.getString("ClassStatus").trim();
-//            if (classStatus.equals("InClass")) {
-//                classStatus = "上课中";
-//            } else {
-//                classStatus = "未上课";
-//            }
-//
-//            String fan = j.getString("Fan").trim();
-//            if (fan.equals("ON")) {
-//                fan = "运行";
-//            } else {
-//                fan = "关闭";
-//            }
-//
-//            String light = j.getString("Light").trim();
-//            if (light.equals("ON")) {
-//                light = "运行";
-//            } else {
-//                light = "关闭";
-//            }
-
-//            //存储SP
-//            Utils.putString(Constant.TEMPERATURE, temperature);
-//            Utils.putString(Constant.PEOPLECOUNT, peopleCount);
-//            Utils.putString(Constant.BRIGHTNESS, brightness);
-//            Utils.putString(Constant.CLASSSTATUS, classStatus);
-//            Utils.putString(Constant.FAN, fan);
-//            Utils.putString(Constant.LIGHT, light);
-
-            x=x%2;
-            Utils.putString(Constant.TEMPERATURE, "24");
-            Utils.putString(Constant.PEOPLECOUNT, ss[x]);
-            Utils.putString(Constant.BRIGHTNESS, "中等");
-            Utils.putString(Constant.CLASSSTATUS, "上课中");
-            Utils.putString(Constant.FAN, "运行");
-            Utils.putString(Constant.LIGHT, "运行");
-            x++;
-
-            // TODO: 2018/3/16    picture未解析
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
         @Override
@@ -372,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
                                     "人数：        " + peopleCount + "\r\n" +
                                     "亮度：        " + brightness + "\r\n" +
                                     "上课情况：" + classStatus + "\r\n" +
-                                    "空调情况：" + fan + "\r\n" +
+                                    "风扇情况：" + fan + "\r\n" +
                                     "电灯情况：" + light;
 
                             // TODO: 2018/3/16    picture未解析

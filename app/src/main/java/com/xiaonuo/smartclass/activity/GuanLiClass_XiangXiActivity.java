@@ -1,44 +1,41 @@
 package com.xiaonuo.smartclass.activity;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.xiaonuo.smartclass.R;
+import com.xiaonuo.smartclass.utils.Constant;
+import com.xiaonuo.smartclass.utils.Utils;
 
-import java.io.BufferedWriter;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.nio.charset.Charset;
-import java.util.HashMap;
 
 
 public class GuanLiClass_XiangXiActivity extends AppCompatActivity implements View.OnClickListener{
 
-    //服务器需要
-    Socket mSocket = null;
-    PrintWriter printWriter = null;
-    InputStream in;
+    //ap0   风扇
+    //ap1   电灯
 
-    int pos;
+    //温度
+    int t=20;
 
-    Button diandeng_button;
+    Button fan_button;
 
-    Button fengShan_button;
+    Button light_button;
 
-    TextView dianDeng;
-    TextView fengShan;
-
+    TextView light_textView;
+    TextView fan_textView;
+    private PrintWriter write;
+    private BufferedReader in;
 
 
     @Override
@@ -46,29 +43,71 @@ public class GuanLiClass_XiangXiActivity extends AppCompatActivity implements Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guanliclass_xiangxi);
 
+        initTCP();
+
+
+        String classID = Utils.getString(Constant.CLASSID, "");
+        String peopleCount = Utils.getString(Constant.PEOPLECOUNT, "");
+        String brightness = Utils.getString(Constant.BRIGHTNESS, "");
+        String classStatus = Utils.getString(Constant.CLASSSTATUS, "");
+        String fan = Utils.getString(Constant.FAN, "");
+        String light = Utils.getString(Constant.LIGHT, "");
 
         //设置按钮监听
         findViewById(R.id.guanLiClass_xiangXi_button_back).setOnClickListener(this);
 
-        diandeng_button = (Button) findViewById(R.id.guanLiClass_xiangXi_button_diandeng);
-        diandeng_button.setOnClickListener(this);
+        fan_button = (Button) findViewById(R.id.guanLiClass_xiangXi_button_fengshan);
+        fan_button.setOnClickListener(this);
+        if(fan.equals("运行")){
+            fan_button.setText("关闭风扇");
+        }else{
+            fan_button.setText("打开风扇");
+        }
 
-        fengShan_button = (Button) findViewById(R.id.guanLiClass_xiangXi_button_fengshan);
-        fengShan_button.setOnClickListener(this);
+        light_button = (Button) findViewById(R.id.guanLiClass_xiangXi_button_diandeng);
+        light_button.setOnClickListener(this);
+        if(light.equals("运行")){
+            light_button.setText("关闭电灯");
+        }else{
+            light_button.setText("打开电灯");
+        }
 
 
-        TextView className = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_className);
+        TextView classID_textView = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_className);
+        classID_textView.setText(classID+"号教室");
 
-        dianDeng = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_dianDengQingKuang);
-        fengShan = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_fengShanQingKuang);
-        TextView isShangKe = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_isShangKe);
-        TextView liangdu = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_liangdu);
-        TextView theNumberOfPeople = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_theNumberOfPeople);
+        light_textView = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_dianDengQingKuang);
+        fan_textView = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_fengShanQingKuang);
+        light_textView.setText(light);
+        fan_textView.setText(fan);
 
+        TextView classStatus_textView = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_isShangKe);
+        classStatus_textView.setText(classStatus);
+
+        TextView brightness_textView = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_liangdu);
+        brightness_textView.setText(brightness);
+
+        TextView peopleCount_textView = (TextView) findViewById(R.id.guanLiClass_xiangXi_textView_theNumberOfPeople);
+        peopleCount_textView.setText(peopleCount);
     }
 
+    private void initTCP() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Socket socket = null;
+                try {
+                    socket = new Socket("192.168.31.197", 8000);
 
+                    write = new PrintWriter(socket.getOutputStream(),true);
+                    in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
+                } catch (IOException e) {
+                e.printStackTrace();
+            }
+            }
+        }).start();
+    }
 
 
     @Override
@@ -89,12 +128,28 @@ public class GuanLiClass_XiangXiActivity extends AppCompatActivity implements Vi
     }
 
     private void startDianDengButton() {
-        if(dianDeng.getText().equals("运行")){//关闭风扇操作
-            diandeng_button.setText("打开电灯");
-            dianDeng.setText("关闭");
+        if(light_textView.getText().equals("运行")){//关闭风扇操作
+            light_button.setText("打开电灯");
+            light_textView.setText("关闭");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    write.println("AP10");
+                    write.flush();
+                }
+            }).start();
+
         }else {
-            diandeng_button.setText("关闭电灯");
-            dianDeng.setText("运行");
+            light_button.setText("关闭电灯");
+            light_textView.setText("运行");
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    write.println("AP11");
+                    write.flush();
+                }
+            }).start();
         }
 
     }
@@ -102,12 +157,29 @@ public class GuanLiClass_XiangXiActivity extends AppCompatActivity implements Vi
 
 
     private void startFengShanButton() {
-        if(fengShan.getText().equals("运行")){//关闭风扇操作
-            fengShan_button.setText("打开空调");
-            fengShan.setText("关闭");
+        if(fan_textView.getText().equals("运行")){//关闭风扇操作
+            fan_button.setText("打开风扇");
+            fan_textView.setText("关闭");
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    write.println("AP00");
+                    write.flush();
+                }
+            }).start();
+
         }else {
-            fengShan_button.setText("关闭空调");
-            fengShan.setText("运行");
+            fan_button.setText("关闭风扇");
+            fan_textView.setText("运行");
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    write.println("AP01");
+                    write.flush();
+                }
+            }).start();
         }
 
     }
@@ -119,7 +191,44 @@ public class GuanLiClass_XiangXiActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onBackPressed() {
+        try {
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        write.close();
         super.onBackPressed();
         overridePendingTransition(R.anim.pre_in,R.anim.pre_out);
+    }
+
+    public void tiaojiekongtiao(View view) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                //展示dialog
+                MaterialDialog m=   new MaterialDialog.Builder(GuanLiClass_XiangXiActivity.this)
+                        .title("空调")
+                        .content("设定温度"+t+"℃")
+                        .positiveText("▼降低")
+                        .negativeText("▲提升")
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog dialog, DialogAction which) {
+                                t--;
+                            }
+                        })
+                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog dialog, DialogAction which) {
+                                t++;
+                            }
+                        })
+                        .autoDismiss(false)
+                        .show();
+
+                //显示完毕，按钮再次可以被点击
+            }
+        });
     }
 }

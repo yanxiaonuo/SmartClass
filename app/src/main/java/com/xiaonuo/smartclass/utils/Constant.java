@@ -31,5 +31,6 @@ public class Constant {
     public static String CLASSSTATUS="classStatus";
     public static String FAN="fan";
     public static String LIGHT="light";
+    public static String CLASSID="classID";
 
 }
